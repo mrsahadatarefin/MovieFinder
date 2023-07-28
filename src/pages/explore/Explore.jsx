@@ -1,6 +1,6 @@
 import React from 'react';
-import"./style.scss"
-const Header = () => {
+
+const Explore = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Explore;
