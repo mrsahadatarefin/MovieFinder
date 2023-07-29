@@ -12,10 +12,88 @@ import dayjs from "dayjs";
 import ContentWrapper from '../contentWraper/ContentWeaper';
 import Img from "../lazyLoadingImage/img";
 import PosterFallback from "../../assets/no-poster.png";
+import CircleRating from '../circleRating/CircleRating';
+
 const Carousel = ({data,loading}) => {
+    const carouselContainer = useRef();
+    const {url}=useSelector(state=>state.home)
+    const navigate = useNavigate();
+   const navigation = (dir)=>{
+const skItem = ()=>{
+   return (
+    <div className='skeletonItem'>
+        <div className='posterBlock skeleton'>
+            <div className='textBlock'>
+             <div className='title skeleton'></div>
+             <div className='date skeleton'></div>
+            </div>
+
+        </div>
+
+    </div>
+   ) 
+}
+   }
     return (
-        <div>
+        
+        
+        <div className='carousel'>
+           <ContentWrapper>
+            <BsFillArrowLeftCircleFill
+            onClick={()=> navigate("left")}
+            className='carouselLeftNav arrow'
             
+            />
+            <BsFillArrowRightCircleFill className='carouselRighttNav arrow'
+                        onClick={()=> navigate('right')}
+            
+            />
+            {
+                !loading?(
+                    <div className='carouselItems'>
+                        {
+                        data?.map(item=>{
+                            const posterUrl = item.poster_path?url.poster + item.poster_path:
+                            PosterFallback
+                            return (
+                                <div key={item.id} className="carouselItem">
+                           <div className='posterBlock'>
+                        <Img src={posterUrl}/>
+                        <CircleRating rating={item.vote_average.toFixed(1)}/>
+                           </div>
+                           <div className='textBlock'>
+                            <span className='title'>
+                                {
+                                    item.title || item.name
+                                }
+
+                            </span>
+                            <span className='date'>
+                                {
+                                    dayjs(item.release_Date).format("MMM D, YYYY")
+                                }
+
+                            </span>
+
+                           </div>
+
+                                </div>
+                            )
+                        })
+                        }
+
+                    </div>
+                ):(
+                    <div className='loadingSkeleton'>
+                    
+                    {/* { skItem } */}
+                        
+                   
+
+                    </div>
+                )
+            }
+           </ContentWrapper>
         </div>
     );
 };
