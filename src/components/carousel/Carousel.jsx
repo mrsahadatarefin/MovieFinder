@@ -26,11 +26,12 @@ const Carousel = ({ data, loading,endpoint }) => {
       dir === "left"
         ? container.scrollLeft - (container.offsetWidth + 20)
         : container.scrollLeft + (container.offsetWidth + 20);
-    container.scrollTo({
-      left: scrollAmount,
-      behavior: "smooth",
-    })
-    ;};
+
+        container.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        });
+    };
 
     const skItem = () => {
       return (
@@ -49,11 +50,11 @@ const Carousel = ({ data, loading,endpoint }) => {
     <div className="carousel">
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
-          onClick={() => navigate("left")}
+          onClick={() => navigation("left")}
           className="carouselLeftNav arrow"
         />
         <BsFillArrowRightCircleFill
-        onClick={() => navigate("right")}
+        onClick={() => navigation("right")}
           className="carouselRighttNav arrow"
           
         />
@@ -71,7 +72,7 @@ const Carousel = ({ data, loading,endpoint }) => {
                   <div className="posterBlock">
                     <Img src={posterUrl} />
                     <CircleRating rating={item.vote_average.toFixed(1)} />
-                    <Genres data={item.genre_ids.slice(0, 2)} />
+                    <Genres data={item.genre_ids.slice(0,2)} />
                   </div>
                   <div className="textBlock">
                     <span className="title">{item.title || item.name}</span>
