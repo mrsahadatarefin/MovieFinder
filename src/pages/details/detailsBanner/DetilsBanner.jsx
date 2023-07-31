@@ -49,7 +49,7 @@ const toHoursAndMinutes = (totalMinutes) => {
                     <div className="content">
                         <div className="left">
                          {
-                            data.poster_path ?(<Img className="posterImg" src={url.backdrop + data.poster_path}/>):(
+                            data?.poster_path ?(<Img className="posterImg" src={url.backdrop + data.poster_path}/>):(
                                 <Img className="posterImg" src={PosterFallback}/>     
                             )
                          }   
@@ -112,7 +112,7 @@ const toHoursAndMinutes = (totalMinutes) => {
                                         </span>
                                        <span className="text">
                                         {
-                                            dayjs(data.release_date).format("MMM D, YYYY")
+                                            dayjs(data?.release_date).format("MMM D, YYYY")
 
                                         }
                                        </span>
@@ -129,7 +129,7 @@ const toHoursAndMinutes = (totalMinutes) => {
                                         </span>
                                        <span className="text">
                                         {
-                                         toHoursAndMinutes(data.runtime)   
+                                         toHoursAndMinutes(data?.runtime)   
                                         }
                                        </span>
                                     </div>
